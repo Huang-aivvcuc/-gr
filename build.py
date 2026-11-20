@@ -22,6 +22,7 @@ pairs = [
     ("src/advantage.src.html", "advantage.html"),
     ("src/about.src.html", "about.html"),
     ("src/contact.src.html", "contact.html"),
+    ("src/zh.src.html", "zh.html"),
 ]
 
 LINK = '<link rel="stylesheet" href="assets/site.css">'

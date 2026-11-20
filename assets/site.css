@@ -938,3 +938,14 @@ footer.foot { background: var(--ink); border-top: 1px solid var(--line); padding
   outline: none; border-color: var(--copper); box-shadow: 0 0 0 3px rgba(184, 118, 62, 0.15);
 }
 .frow textarea { resize: vertical; }
+
+/* 语言切换（EN ⇄ 中文） */
+.lang-switch {
+  font-size: 12px;
+  letter-spacing: .1em;
+  color: var(--cream-faint);
+  text-decoration: none;
+  padding: 6px 4px;
+  transition: color .3s;
+}
+.lang-switch:hover { color: var(--copper-soft); }
