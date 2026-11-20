@@ -1,0 +1,20 @@
+# GAORUI STONE · Cloudflare Workers 构建配置（放在仓库根目录）
+# 站点：deploy/public（9 个公开页 + admin + 34 图 + favicon + sitemap/robots）
+# API：deploy/gaorui-worker.js（D1 询盘后端）
+#
+# 注意：D1 绑定默认注释掉。等您在 Cloudflare 建好 D1 后，把 database_id 填进下面
+# 的块并取消注释，API 才会连上数据库；注释状态下构建能成功，静态站正常上线。
+
+name = "gaorui-site"
+main = "deploy/gaorui-worker.js"
+compatibility_date = "2025-06-01"
+
+[assets]
+directory = "./deploy/public"
+binding = "ASSETS"
+run_worker_first = true
+
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "gaorui-inquiries"
+# database_id = "在这里填你的 D1 database_id"
