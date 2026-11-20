@@ -1,6 +1,3 @@
-# 部署打包产物（每次 build 后重新生成，不入库）
-deploy/public/
-
 # macOS
 .DS_Store
 ._*
