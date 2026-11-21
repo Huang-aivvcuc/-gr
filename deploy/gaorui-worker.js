@@ -343,12 +343,6 @@ export default {
       ctx.waitUntil((async () => { await ensureSchema(env); await trackVisit(env, url); })());
     }
 
-    // 根路径兜底到 index.html
-    if (url.pathname === '/' && env.ASSETS) {
-      const r = await env.ASSETS.fetch(new Request(`${url.origin}/index.html`, request));
-      if (r.status !== 404) return r;
-    }
-
     return env.ASSETS ? env.ASSETS.fetch(request) : new Response('ASSETS binding missing', { status: 500 });
   },
 };

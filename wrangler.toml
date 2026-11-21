@@ -13,6 +13,8 @@ compatibility_date = "2025-06-01"
 directory = "./deploy/public"
 binding = "ASSETS"
 run_worker_first = true
+# 关闭 .html 规范化：避免 /index.html 307 回 /，也保证 canonical 与实际 URL 一致
+html_handling = "none"
 
 # [[d1_databases]]
 # binding = "DB"
