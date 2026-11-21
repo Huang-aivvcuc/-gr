@@ -343,6 +343,20 @@ export default {
       ctx.waitUntil((async () => { await ensureSchema(env); await trackVisit(env, url); })());
     }
 
+    // 静态资源映射（wrangler 里 html_handling="none"，ASSETS 不做 URL 规范化，需要显式兜底）
+    if (env.ASSETS && request.method === 'GET') {
+      // 根路径 → index.html
+      if (url.pathname === '/') {
+        const r = await env.ASSETS.fetch(new Request(`${url.origin}/index.html`, request));
+        if (r.status !== 404) return r;
+      }
+      // 无扩展名路径 → 同名 .html（/products → /products.html），保证旧链接不 404
+      if (!url.pathname.includes('.') && !url.pathname.endsWith('/')) {
+        const r = await env.ASSETS.fetch(new Request(`${url.origin}${url.pathname}.html`, request));
+        if (r.status !== 404) return r;
+      }
+    }
+
     return env.ASSETS ? env.ASSETS.fetch(request) : new Response('ASSETS binding missing', { status: 500 });
   },
 };
